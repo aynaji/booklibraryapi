@@ -39,7 +39,7 @@ public class BookLibraryController {
         return "Book is updated";
     }
 
-    @DeleteMapping("/delete/id")
+    @DeleteMapping("/delete/{id}")
     public String deleteBook(@PathVariable int id){
         bookLibraryService.deleteBooks(id);
         return "Book is deleted";
