@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController("/books")
+@RestController
 public class BookLibraryController {
 
     final
@@ -23,24 +23,25 @@ public class BookLibraryController {
     }
 
     @GetMapping("/{id}")
-    public Books findBookById(@PathVariable int id){
+    public Books findBookById(@PathVariable int id) {
         return bookLibraryService.findBookById(id);
     }
 
-    @PostMapping("/add/")
-    public String addBook(@RequestBody Books books){
-         bookLibraryService.addBook(books);
-         return "Book was added";
+    @PostMapping("/add")
+    public String addBook(@RequestBody Books books) {
+        bookLibraryService.addBook(books);
+        return "Book was added";
     }
 
-    @PutMapping("/update/")
-    public String updateBook(@RequestBody Books books){
+
+    @PutMapping("/update")
+    public String updateBook(@RequestBody Books books) {
         bookLibraryService.updateBook(books);
         return "Book is updated";
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteBook(@PathVariable int id){
+    public String deleteBook(@PathVariable int id) {
         bookLibraryService.deleteBooks(id);
         return "Book is deleted";
     }

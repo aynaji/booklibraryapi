@@ -9,7 +9,7 @@ import java.util.Collections;
 
 public class UsersPrincipal implements UserDetails {
 
-    private Users users;
+    private final Users users;
 
     public UsersPrincipal(Users users) {
         this.users = users;
@@ -17,7 +17,7 @@ public class UsersPrincipal implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singleton(new SimpleGrantedAuthority("USER"));
+        return Collections.singleton(new SimpleGrantedAuthority("ADMIN"));
     }
 
     @Override

@@ -1,14 +1,13 @@
 package com.ammarnaji.booklibraryapi.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Books {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "bookname")
     private String bookName;
@@ -26,12 +25,8 @@ public class Books {
         this.genre = genre;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getBookName() {
