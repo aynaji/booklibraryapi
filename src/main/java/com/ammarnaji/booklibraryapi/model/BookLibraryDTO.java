@@ -1,24 +1,24 @@
 package com.ammarnaji.booklibraryapi.model;
 
 
-import java.util.Arrays;
+import java.util.List;
 
 public class BookLibraryDTO {
 
-    private Books[] books;
+    private List<Books> books;
 
-    public Books[] getBooks() {
+    public List<Books> getBooks() {
         return books;
     }
 
-    public void setBooks(Books[] books) {
+    public void setBooks(List<Books> books) {
         this.books = books;
     }
 
     @Override
     public String toString() {
         return "BookLibraryDTO{" +
-                "books=" + Arrays.toString(books) +
+                "books=" + books +
                 '}';
     }
 }

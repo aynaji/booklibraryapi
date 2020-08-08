@@ -1,11 +1,13 @@
 package com.ammarnaji.booklibraryapi.controller;
 
 
+import com.ammarnaji.booklibraryapi.model.BookLibraryDTO;
 import com.ammarnaji.booklibraryapi.model.Books;
 import com.ammarnaji.booklibraryapi.service.BookLibraryService;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 @RestController
 public class BookLibraryController {
@@ -18,24 +20,29 @@ public class BookLibraryController {
     }
 
     @GetMapping("/")
-    public List<Books> findAllBooks() {
-        return bookLibraryService.findAllBooks();
+    @Cacheable("bookLibraryDTO")
+    public BookLibraryDTO findAllBooks() {
+        BookLibraryDTO bookLibraryDTO = new BookLibraryDTO();
+        bookLibraryDTO.setBooks(bookLibraryService.findAllBooks());
+        return bookLibraryDTO;
     }
 
+    @Cacheable("books")
     @GetMapping("/{id}")
     public Books findBookById(@PathVariable int id) {
-        return bookLibraryService.findBookById(id);
+        Books books = bookLibraryService.findBookById(id);
+        return books;
     }
 
     @PostMapping("/add")
-    public String addBook(@RequestBody Books books) {
+    public String addBook(@Valid @RequestBody Books books) {
         bookLibraryService.addBook(books);
-        return "Book was added";
+        return "Book is added";
     }
 
 
     @PutMapping("/update")
-    public String updateBook(@RequestBody Books books) {
+    public String updateBook(@Valid @RequestBody Books books) {
         bookLibraryService.updateBook(books);
         return "Book is updated";
     }
